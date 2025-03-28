@@ -1,0 +1,9 @@
+.DS_Store
+.Trashes
+.Spotlight-V100
+Thumbs.db
+*.log
+.*.log
+/target
+node_modules
+vendor

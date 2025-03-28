@@ -1,0 +1,44 @@
+{
+  "name": "@nick/lint",
+  "version": "0.72.0",
+  "license": "MIT",
+  "author": {
+    "name": "Nicholas Berlette",
+    "email": "nick@berlette.com",
+    "url": "https://github.com/nberlette"
+  },
+  "exports": {
+    ".": "./mod.ts",
+    "./config": "./src/config.ts",
+    "./diagnostic": "./src/diagnostic.ts",
+    "./diagnostic/level": "./src/diagnostic_level.ts",
+    "./error": "./src/error.ts",
+    "./fix": "./src/fix.ts",
+    "./linter": "./src/linter.ts",
+    "./rule": "./src/rule.ts",
+    "./rules": "./src/rules.ts",
+    "./position": "./src/position.ts",
+    "./range": "./src/range.ts",
+    "./source-file": "./src/source_file.ts",
+    "./tags": "./src/tags.ts",
+    "./types": "./src/types.ts",
+    "./version": "./src/version.ts",
+    "./wasm": "./src/wasm.ts"
+  },
+  "imports": {
+    "@ts-morph/bootstrap": "jsr:@ts-morph/bootstrap@0.26.1",
+    "@ts-morph/common": "jsr:@ts-morph/common@0.26.1",
+    "@ts-morph/ts-morph": "jsr:@ts-morph/ts-morph@25.0.1",
+    "@david/dax": "jsr:@david/dax@0.42.0",
+    "@nick/fsxx": "jsr:@nick/fsxx@^0.1.0",
+    "@iter/weak-map": "jsr:@iter/weak-map@^0.1.0"
+  },
+  "tasks": {
+    "build:base": "deno run -qA jsr:@deno/wasmbuild@0.19.1 build -p dlint",
+    "build:wasm": "deno task build:base --out src/wasm-bg",
+    "build:sync": "deno task build:base --out src/wasm --inline && deno run compress ./src/wasm/dlint.js",
+    "build:lite": "deno task build:base --out src/wasm-lite --inline --no-default-features --features lite && deno run compress ./src/wasm-lite/dlint.js",
+    "compress": "deno run -qA scripts/compress_wasm.ts",
+    "build": "deno run build:wasm && deno run build:sync && deno run build:lite"
+  }
+}
