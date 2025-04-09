@@ -1,0 +1,19 @@
+{
+  "name": "@nick/lint-wasm",
+  "version": "0.72.0",
+  "license": "MIT",
+  "author": {
+    "name": "Nicholas Berlette",
+    "email": "nick@berlette.com",
+    "url": "https://github.com/nberlette/lint"
+  },
+  "exports": {
+    ".": "./lib/lint.js",
+    "./lint": "./lib/lint.js",
+    "./lint.js": "./lib/lint.js",
+    "./lint.d.ts": "./lib/lint.d.ts"
+  },
+  "imports": {
+    "debrotli": "npm:debrotli@^0.1.0"
+  }
+}
