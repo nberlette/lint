@@ -1,0 +1,33 @@
+{
+  "name": "@nick/lint",
+  "version": "0.72.0",
+  "license": "MIT",
+  "author": {
+    "name": "Nicholas Berlette",
+    "email": "nick@berlette.com",
+    "url": "https://github.com/nberlette/lint"
+  },
+  "exports": {
+    ".": "./mod.ts",
+    "./config": "./src/config.ts",
+    "./diagnostic": "./src/diagnostic.ts",
+    "./diagnostic/level": "./src/diagnostic_level.ts",
+    "./error": "./src/error.ts",
+    "./fix": "./src/fix.ts",
+    "./linter": "./src/linter.ts",
+    "./rule": "./src/rule.ts",
+    "./rules": "./src/rules.ts",
+    "./position": "./src/position.ts",
+    "./range": "./src/range.ts",
+    "./source-file": "./src/source_file.ts",
+    "./tags": "./src/tags.ts",
+    "./types": "./src/types.ts",
+    "./version": "./src/version.ts",
+    "./wasm": "./src/wasm.ts"
+  },
+  "imports": {
+    "@iter/weak-map": "jsr:@iter/weak-map@^0.1.0",
+    "@nick/lint-ext": "jsr:@nick/lint-ext@0.72.0",
+    "@nick/lint-wasm": "jsr:@nick/lint-wasm@0.72.0"
+  }
+}

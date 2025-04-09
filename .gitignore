@@ -7,3 +7,8 @@ Thumbs.db
 /target
 node_modules
 vendor
+
+.env*
+.flaskenv*
+!.env.project
+!.env.vault
