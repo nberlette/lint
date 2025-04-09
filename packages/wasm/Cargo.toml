@@ -1,0 +1,64 @@
+[package]
+  name    = "lint"
+  version = "0.72.0"
+  authors = ["Nicholas Berlette <nick@berlette.com>"]
+  edition = "2024"
+
+[lib]
+  name       = "lint"
+  crate-type = ["cdylib"]
+  path       = "src/lib.rs"
+
+[features]
+  debug = ["dep:console_error_panic_hook", "timing"]
+  default = ["fs", "utils", "timing", "alloc"]
+  utils = ["fix", "rules", "json"]
+  all = ["fs", "utils", "alloc", "debug"]
+  lite = ["alloc"]
+  fix = []
+  fs = []
+  timing = []
+  rules = []
+  threads = ["alloc"]
+  json = ["dep:serde_json", "serde_json/preserve_order"]
+  alloc = [
+    "serde/alloc",
+    "wasm-bindgen/gg-alloc",
+    "serde_json/alloc",
+    "lol_alloc",
+  ]
+
+[dependencies]
+  deno_ast = { workspace = true, features = [
+    "scopes",
+    "transforms",
+    "utils",
+    "visit",
+    "view",
+    "react",
+  ] }
+  deno_lint = { workspace = true }
+  deno_media_type = { workspace = true }
+  derive_more = { workspace = true, features = [
+    "display",
+    "debug",
+    "deref",
+    "deref_mut",
+    "constructor",
+    "from",
+    "from_str",
+    "as_ref",
+    "is_variant",
+  ] }
+  wasm-bindgen = { workspace = true, features = ["enable-interning"] }
+  serde = { workspace = true, features = ["derive"] }
+  serde-wasm-bindgen = { workspace = true }
+  js-sys = { workspace = true }
+
+  getrandom = { workspace = true, features = ["js"] }
+  text_lines = { workspace = true, features = ["serialization"] }
+  serde_json = { workspace = true, features = [
+    "preserve_order",
+  ], optional = true }
+  console_error_panic_hook = { workspace = true, optional = true }
+  lol_alloc = { workspace = true, optional = true }
