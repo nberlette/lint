@@ -1,0 +1,43 @@
+[workspace]
+  resolver = "2"
+  members  = ["./packages/wasm", "./upstream/deno_lint"]
+
+[workspace.dependencies]
+  serde-wasm-bindgen = { version = "=0.6.5" }
+  js-sys = { version = "=0.3.77" }
+  lol_alloc = { version = "=0.4.1" }
+  console_error_panic_hook = { version = "=0.1.7" }
+  deno_media_type = { version = "0.2" }
+  deno_ast = { version = "=0.46.5", features = [
+    "scopes",
+    "transforms",
+    "utils",
+    "visit",
+    "view",
+    "react",
+  ] }
+  deno_lint = { version = "=0.74.0", path = "./upstream/deno_lint" }
+  derive_more = { version = "2", features = ["full"] }
+  wasm-bindgen = { version = "=0.2.100", features = ["enable-interning"] }
+  serde = { version = "=1.0.219", features = ["derive", "alloc", "rc"] }
+  getrandom = { version = "=0.2.15", features = ["js"] }
+  text_lines = { version = "=0.6.0", features = ["serialization"] }
+  serde_json = { version = "=1.0.140", features = ["preserve_order"] }
+
+[profile.release]
+  opt-level        = "s"
+  panic            = "abort"
+  strip            = "symbols"
+  lto              = true
+  codegen-units    = 1
+  incremental      = true
+  debug-assertions = false
+
+[profile.dev]
+  opt-level        = 0
+  panic            = "unwind"
+  lto              = true
+  debug            = true
+  strip            = "none"
+  incremental      = true
+  debug-assertions = true
